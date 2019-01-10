@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin:'maven'
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+android{
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':ComponentAnnotation')
+    compileOnly 'com.alibaba:arouter-api:1.3.1' // compileOnly仅仅在编译时使用，不打包进apk或者aar
+    api project(':ComponentJavaLibs')
+}
+
+group = 'com.wn.component'
+version = versionName
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+//            repository(url: mavenUrl) {
+//                authentication(userName: mavenUn, password: mavenPwd)
+//            }
+            //本地的Maven地址
+            repository(url: uri(mavenLocal))
+        }
+    }
+}

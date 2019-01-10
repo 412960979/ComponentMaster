@@ -1,0 +1,1 @@
+include ':app', ':ComponentAnnotation', ':ComponentApt', ':ComponentJavaLibs', ':ComponentLibs', ':ComponentGradlePlugin', ':Utils'
