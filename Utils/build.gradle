@@ -1,0 +1,31 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+def android_build_version = "3.0.1"
+
+dependencies {
+    implementation gradleApi()
+    compile "com.android.tools.build:gradle:$android_build_version"
+    compile "com.android.tools.build:gradle-api:$android_build_version"
+    compile "com.android.tools.build:gradle-core:$android_build_version"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+
+group = 'com.wn.component'
+version = versionName
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+//            repository(url: mavenUrl) {
+//                authentication(userName: mavenUn, password: mavenPwd)
+//            }
+            //本地的Maven地址
+            repository(url: uri(mavenLocal))
+        }
+    }
+}

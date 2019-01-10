@@ -1,0 +1,25 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+group = 'com.wn.component'
+version = versionName
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+//            repository(url: mavenUrl) {
+//                authentication(userName: mavenUn, password: mavenPwd)
+//            }
+            //本地的Maven地址
+            repository(url: uri(mavenLocal))
+        }
+    }
+}

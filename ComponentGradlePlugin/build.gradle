@@ -1,0 +1,30 @@
+apply plugin:'groovy'
+apply plugin:'maven'
+
+def android_build_version = "3.0.1"
+
+dependencies {
+    implementation gradleApi()
+    implementation 'javassist:javassist:3.12.1.GA'
+    implementation "com.android.tools.build:gradle:$android_build_version"
+    implementation "com.android.tools.build:gradle-api:$android_build_version"
+    implementation "com.android.tools.build:gradle-core:$android_build_version"
+    implementation 'com.wn.component:Utils:1.0.0'
+    implementation project(':ComponentJavaLibs')
+}
+
+group = 'com.wn.component'
+version = versionName
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+//            repository(url: mavenUrl) {
+//                authentication(userName: mavenUn, password: mavenPwd)
+//            }
+            //本地的Maven地址
+            repository(url: uri(mavenLocal))
+        }
+    }
+}
